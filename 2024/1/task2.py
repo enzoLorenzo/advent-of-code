@@ -1,3 +1,5 @@
+from collections import Counter
+
 with open('input.txt', 'r') as file:
     left_list = []
     right_list = []
@@ -12,11 +14,10 @@ left_list.sort()
 right_list.sort()
 
 summary = 0
+right_count = Counter(right_list)
 
-for i in range(len(left_list)):
-    a = left_list[i]
-    b = right_list[i]
-    difference = abs(a - b)
-    summary += difference
+for number in left_list:
+    occurrences = right_count.get(number, 0)
+    summary += number * occurrences
 
 print("Answer: ", summary)
